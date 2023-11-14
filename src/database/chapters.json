@@ -1,0 +1,64 @@
+{
+    "chapters": [
+        {
+            "id": 1,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 1,
+            "data": "01/01/2023"
+        },
+        {
+            "id": 2,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 2,
+            "data": "07/01/2023"
+        },
+        {
+            "id": 3,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 3,
+            "data": "14/01/2023"
+        },
+        {
+            "id": 4,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 4,
+            "data": "21/01/2023"
+        },
+        {
+            "id": 5,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 5,
+            "data": "28/01/2023"
+        },
+        {
+            "id": 6,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 6,
+            "data": "04/02/2023"
+        },
+        {
+            "id": 7,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 7,
+            "data": "11/02/2023"
+        },
+        {
+            "id": 8,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 8,
+            "data": "18/02/2023"
+        },
+        {
+            "id": 9,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 9,
+            "data": "25/02/2023"
+        },
+        {
+            "id": 10,
+            "cover": "https://ovicio.com.br/wp-content/uploads/apagao_capa.jpg",
+            "chapter": 10,
+            "data": "04/03/2023"
+        }
+    ]
+}

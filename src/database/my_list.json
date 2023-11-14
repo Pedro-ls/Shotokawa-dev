@@ -1,0 +1,84 @@
+{
+    "list": [
+        {
+            "id": 1,
+            "title": "Citrus",
+            "genre": "Romance",
+            "subgenre": "Drama - Vida Escolar",
+            "image": "https://m.media-amazon.com/images/I/71rISIiKFEL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 16
+        },
+        {
+            "id": 2,
+            "title": "O Diário do Futuro",
+            "genre": "Aventura",
+            "subgenre": "Drama - Suspense",
+            "image": "https://m.media-amazon.com/images/I/718tGQZR9ZL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 16
+        },
+        {
+            "id": 3,
+            "title": "Demon Slayer",
+            "genre": "Ficção",
+            "subgenre": "Aventura - Shonen",
+            "image": "https://i.pinimg.com/originals/50/a9/e4/50a9e491dea2848f0b522753353d56bb.png",
+            "rating": 16
+        },
+        {
+            "id": 4,
+            "title": "Boku no Hero",
+            "genre": "Ficção",
+            "subgenre": "Comédia - Shonen",
+            "image": "https://upload.wikimedia.org/wikipedia/pt/5/5a/Boku_no_Hero_Academia_Volume_1.png",
+            "rating": 14
+        },
+        {
+            "id": 5,
+            "title": "Chainsaw Man",
+            "genre": "Ação",
+            "subgenre": "Comédia - Fantasia",
+            "image": "https://m.media-amazon.com/images/I/51BeRXEKuWL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 16
+        },
+        {
+            "id": 6,
+            "title": "Vagabond",
+            "genre": "Épico",
+            "subgenre": "Biografia - Seinen",
+            "image": "https://m.media-amazon.com/images/I/51R02RARHKL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 16
+        },
+        {
+            "id": 7,
+            "title": "Fire Punch",
+            "genre": "Fantasia",
+            "subgenre": "Ficção - Suspense",
+            "image": "https://m.media-amazon.com/images/I/51fzccAIiTL.jpg",
+            "rating": 14
+        },
+        {
+            "id": 8,
+            "title": "Blue Lock",
+            "genre": "Esporte",
+            "subgenre": "Suspense - Shonen",
+            "image": "https://m.media-amazon.com/images/I/51jMLFs0YBL.jpg",
+            "rating": 12
+        },
+        {
+            "id": 9,
+            "title": "Berserk",
+            "genre": "Fantasia",
+            "subgenre": "Sombria - Seinen",
+            "image": "https://m.media-amazon.com/images/I/91Ku28LDLiL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 18
+        },
+        {
+            "id": 10,
+            "title": "One Piece",
+            "genre": "Ficção",
+            "subgenre": "Fantasia - Shonen",
+            "image": "https://m.media-amazon.com/images/I/61v4uHizwxL.jpg",
+            "rating": 12
+        }
+    ]
+}
