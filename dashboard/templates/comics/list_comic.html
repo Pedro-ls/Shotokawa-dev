@@ -1,0 +1,80 @@
+{% extends 'partials/_dashboard.html' %}
+{% block navbar_options %}
+<section class="p-2">
+    <a class="btn-nav" href="{% url 'list_comic' %}">Listar Mangas</a>
+    <a class="btn-nav" href="{% url 'register_comic' %}">Criar Mangas</a>
+</section>
+{% endblock navbar_options %}
+
+{% block main %}
+<div>
+    <h1 class="my-4 text-5xl text-d-orange-50">Listar Mangas</h1>
+    <div class="flex justify-center items-center">
+        <table class="table container w-full" role="true">
+            <thead>
+                <tr>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Titulo</th>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Tipo de Quadrinho</th>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Idade Minima</th>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Estrelas</th>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Data de publicação
+                        <span class="text-base text-yellow-300 material-symbols-outlined"> </span>
+                </th>
+                    <th class="text-lg underline text-center bg-zinc-800 text-zinc-200">Episodios</th>
+                </tr>
+            </thead>
+           
+            <tbody>
+                {% for comic in comics %}
+                    <tr class="text-white hover:text-zinc-300 border-b pb-2 border-zinc-700 hover:border-zinc-600">
+                        <td class="text-center py-5">
+                            {{comic.name}}
+                        </td>
+                        <td class="text-center py-5">
+                            {{comic.type_full}}
+                        </td>
+                        <td class="text-center py-5">
+                            {{comic.old_min}}
+                        </td class="text-center py-5">
+                        <td class="text-center">
+                            {% if comic.stars_array %}
+                                {% for i in comic.stars_array %}
+                                    <span class="text-base text-yellow-300 material-symbols-outlined">
+                                        {{i}}
+                                    </span>
+                                {% endfor %}
+                            {% else %}
+                                    Sem Estrelas
+                            {% endif %}
+                            
+                        </td>
+                        <td class="text-center">
+                            {{comic.year_pub}}
+                        </td>
+                        <td class="flex flex-col justify-center items-center">
+                            <div>
+                                
+                                    <a href="{% url 'list_episode' comic.slug %}" class="m-2 underline text-blue-500">
+                                        Acessar Episodios
+                                    </a>
+                            </div>
+                            <div>
+                                <a class="flex space-x-3 justify-center items-center" href="{% url 'register_episode' comic.slug %}">
+                                    <span class="underline">
+                                        Adicionar Episodios
+                                    </span> <span class="text-base hover:text-white p-2 material-symbols-outlined border border-green-500 text-green-500 hover:bg-green-500 px-2 py-1 rounded-md">
+                                        add
+                                    </span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    
+</div>
+
+{% endblock main %}

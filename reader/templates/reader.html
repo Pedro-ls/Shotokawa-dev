@@ -1,0 +1,197 @@
+{% extends "partials/_base.html" %}
+{% load static %}
+{% block content %}
+
+<button type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+    <span class="sr-only">Open sidebar</span>
+    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+       <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+    </svg>
+  </button>
+  <section>
+    <aside id="captions-episodes" class="hidden fixed top-0 right-0 h-full z-40 bg-zinc-950">
+        <section class="flex flex-col space-y-1 mt-4">
+            {% for episode in episodes %}
+                <article class="w-full px-16 py-2 text-zinc-400 hover:text-zinc-300 active">
+                    <a class="no-underline" href="?episode_actual={{episode.id}}">{{episode.name}}</a>
+                </article>
+            {% endfor %}
+        </section>
+    </aside>
+  </section>
+  
+      <main>
+        <div class="fixed overflow-scroll w-full h-full flex items-center justify-center" style="background-image: url(/img/Background.jpg); background-size: cover; backface-visibility: visible; backdrop-filter: fit; background-repeat: no-repeat;">
+                  <!-- Carousel wrapper -->
+          <div class="relative w-full h-full rounded-lg ">
+               <!-- Item 1 -->
+              <div class="w-full duration-200 ease-linear flex justify-center items-center" id="container-page">
+  
+              </div>
+          </div>
+          <!-- Slider controls -->
+          <button type="button" id="btn-slide-prev" class="fixed top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-zinc-700 hover:bg-orange-500">
+                  <svg class="w-4 h-4 text-zinc-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                  </svg>
+                  <span class="sr-only">Previous</span>
+              </span>
+          </button>
+          <button type="button" id="btn-slide-next" class="fixed top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-zinc-700 hover:bg-orange-500">
+                  <svg class="w-4 h-4 text-zinc-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                  </svg>
+                  <span class="bg-zinc-800 sr-only">Next</span>
+              </span>
+          </button>
+          </div>
+          </main>
+      <footer>
+        <section class="fixed -bottom-7 transition-all hover:bottom-0 z-50 bg-zinc-900 text-zinc-200 w-full flex flex-row justify-between">
+          <article class="p-3" >
+            Capitulo: <span id="page-title"></span>
+          </article>
+          <article class="p-3 flex space-x-2">
+            <div class="flex">
+              <button id="btn-prev">
+                <span class="inline-flex items-center justify-center w-10 rounded-full">
+                  <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                  </svg>
+                  <span class="sr-only">Previous</span>
+              </span>
+              </button>
+              <span id="page-counter" class="inline-flex items-center justify-center w-10 rounded-full">X</span>
+              <button id="btn-next">
+                <span class="inline-flex items-center justify-center w-10 rounded-full">
+                  <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                  </svg>
+                  <span class="sr-only">Next</span>
+                </span>
+              </button>
+            </div>
+            <div>
+              Mode paginado - cascata            
+            </div>
+          </article>
+          <article class="p-3">
+            <button id="btn-expand-episodes" type="button">|||</button>
+          </article>
+        </section> 
+      </footer>
+
+{% endblock content %}
+{% block scripts %}
+      <script>
+        // main containers
+const captionsEpisodes = document.getElementById("captions-episodes")
+const btnExpandEpisodes = document.getElementById("btn-expand-episodes")
+const containerPage = document.getElementById("container-page")
+
+// change pages menu bottom bar
+const btnPrev = document.getElementById("btn-prev")
+const btnNext = document.getElementById("btn-next")
+
+// change pages arrows slider
+const btnSlidePrev = document.getElementById("btn-slide-prev")
+const btnSlideNext = document.getElementById("btn-slide-next")
+
+// vars info menu page
+const pageCounter = document.getElementById("page-counter")
+const pageTitle = document.getElementById("page-title")
+
+// vars
+// counter pages indication
+var counter = 1
+
+// data teste fake
+const pagesEpisode = [
+    {% for page_comic in pages %}
+        {
+            title:"{{comic.name}}",
+            page: {{ page_comic.page }},
+            image: "/media/{{ page_comic.photo }}"
+        },
+    {% endfor %}
+]
+
+
+// create image
+function image(src, classes){
+  let img = new Image()
+  img.src = src
+  for (const class_object of classes) {
+    img.classList.add(class_object)
+  }
+  return  img
+}
+
+// change page
+function read(){
+  containerPage.innerHTML = ""
+  const pageEpisode = pagesEpisode.find(v => v.page === counter)
+
+  pageCounter.innerText = String(pageEpisode.page)
+  pageTitle.innerHTML = String(pageEpisode.title)
+
+  containerPage.append(image(pageEpisode.image, [
+    "absolute",
+    "block",
+    "top-0"
+  ]))
+}
+
+// next page
+function next_page(){
+  if(counter < (pagesEpisode.length)){
+    console.log(counter)
+      counter++;
+  }
+
+  read()
+}
+
+function prev_page(){
+  if(counter > 1){
+    console.log(counter)
+      counter--;
+  }
+  read()
+}
+
+// toggle bar episodes menu
+btnExpandEpisodes.addEventListener("click", function (evt) {
+  captionsEpisodes.classList.toggle("hidden")
+})
+
+// bar options pages arrows
+btnNext.addEventListener('click', next_page)
+btnPrev.addEventListener('click', prev_page)
+
+// Slide pages
+btnSlidePrev.addEventListener('click', prev_page)
+btnSlideNext.addEventListener('click', next_page)
+// keyboard arrows functions
+window.addEventListener('keyup', (evt) => {
+  switch (evt.key) {
+    case "ArrowRight":
+      next_page();
+      break;
+    case "ArrowLeft":
+      prev_page();
+    default:
+      break;
+  }
+
+})
+
+function initReader(){
+  read()
+}
+
+initReader()
+      </script>
+{% endblock scripts %}

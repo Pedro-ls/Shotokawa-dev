@@ -1,0 +1,34 @@
+{% extends 'partials/_dashboard.html' %}
+{% block main %}
+<section class="space-y-3 rounded-lg bg-zinc-800">
+  <h1 class="text-4xl text-d-orange-50 my-3 p-3">Dashboard</h1>
+  <caption>
+    <h4 class="text-2xl text-d-orange-80 text-left ml-3">Informações</h4>
+    <div class=" flex justify-between items-center px-4 py-2 border border-d-orange-50 rounded-sm text-white mx-5">
+      <div class="space-y-2">
+        <p class="bg-d-orange-50 rounded-md py-1"><span class="bg-zinc-900 rounded-md px-4 py-2">Username:</span>{{user.username}}</p>
+        <p class="bg-d-orange-50 rounded-md py-1"><span class="bg-zinc-900 rounded-md px-4 py-2">Email:</span>{{user.email}}</p>
+      </div>
+
+      <section>
+        <a class="mx-1 border hover:scale-105 transition ease-in-out border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white py-3 px-4" href="{% url 'list_comic' %}">Listar Mangás</a>
+        <a class="mx-1 border hover:scale-105 transition ease-in-out border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white py-3 px-4" href="{% url 'register_comic' %}">Cadastrar Mangá</a>
+      </section>
+
+      
+      <img class="w-28 h-28 m-2 rounded-full hover:scale-125 transition ease-in-out" src="/media/{{user.profile_image}}" alt="foto de perfil">
+    </div>
+  </caption>
+  <caption>
+    <div class="modules">
+      {% include 'components/categories.html' %}
+      {% include 'components/subcategories.html' %}
+      {% include 'components/authors.html' %}
+      {% include 'components/editors.html' %}
+    </div>
+  </caption>
+</section>
+<div>
+  {% include 'components/forms.html' %}
+</div>
+{% endblock main %}

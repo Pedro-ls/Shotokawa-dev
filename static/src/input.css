@@ -1,0 +1,465 @@
+/* @font-face {
+  font-family: Gang;
+  src: url(/go3v2.ttf);
+}
+
+@font-face {
+  font-family: Manga;
+  src: url(/mangat.ttf);
+} */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input, textarea, select {
+
+}
+.font-title-anime {
+  font-family: Manga;
+}
+
+.font-logo {
+  font-family: Gang;
+  font-size: 1.2em;
+}
+
+body {
+  background-color: #191919;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.outline-none {
+  outline: none;
+  border: none;
+  transition: ease-in-out 60ms;
+}
+
+#bar {
+  position: fixed;
+  width: 40px;
+  height: 100%;
+  transition: ease-in-out 60ms;
+  z-index: 100;
+}
+
+.menu-relative{
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top:0;
+  right: -125px;
+  background-color: black;
+  z-index: 100;
+}
+
+option {
+  color: white;
+  padding-block: 5px;
+}
+
+label {
+  padding: 4px;
+  font-size: 20px;
+  color: rgb(255, 154, 2);
+}
+.submenu li {
+  padding-block: 4px;
+  padding-inline: 4px;
+  min-width: 130px;
+}
+
+.menu:hover .submenu {
+  display: block;
+}
+
+main#application {
+  margin-left: 40px;
+  transition: ease-in-out 60ms;
+}
+
+#bar:hover {
+  width: 140px;
+}
+
+#bar .img-resize {
+  width: 20px;
+  height: 20px;
+  transition: ease-in-out 60ms;
+}
+
+#bar:hover .img-resize {
+  width: 65px;
+  height: 65px;
+}
+
+#bar:hover .menu-logo-none {
+  display: none;
+}
+
+.object-none {
+  display: none;
+  transition: ease-in-out 60ms;
+}
+
+#bar .flex-custom {
+  flex-direction: column;
+  transition: ease-in-out 60ms;
+}
+
+#bar:hover .flex-custom {
+  flex-direction: row;
+}
+
+#bar .object-flex {
+  display: none;
+  transition: ease-in-out 60ms;
+}
+
+#bar:hover .object-flex {
+  display: flex;
+}
+
+#bar:hover .object-none {
+  display: block;
+}
+
+#bar:hover ~ main#application {
+  margin-left: 140px;
+}
+
+.absolute-full {
+  position: absolute;
+  display: none;
+}
+
+.img-tambs {
+  background-position-x: center;
+  background-repeat: no-repeat;
+}
+
+.relative-cls-pack {
+  position: relative;
+  background-color: transparent;
+}
+
+.bg-opacity-yellow {
+  background-color: rgba(242, 255, 0, 0.23);
+}
+
+.bg-opacity-gray {
+  background-color: rgba(158, 158, 158, 0.54);
+}
+
+.img-z {
+  z-index: -1;
+}
+
+.relative-cls-pack:hover {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(98, 98, 98, 0.378);
+  border-radius: 50%;
+}
+
+.relative-cls-pack:hover .absolute-full {
+  display: block;
+  color: white;
+  position: absolute;
+}
+
+.absolute-full:hover {
+  color: #f0f0f0 !important;
+}
+
+.mg-780 {
+  margin-left: 0px;
+}
+
+.books {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px 4px;
+  position: relative;
+  z-index: 0;
+  overflow-y: none;
+  height: 215px;
+  max-height: 240px;
+  overflow-x: scroll;
+  scroll-behavior: none;
+
+  -ms-overflow-style: none;
+  /* IE 11 */
+  scrollbar-width: none;
+  /* Firefox 64 */
+
+  padding: 0px 10px 0px 12px;
+}
+
+.red {
+  background-color: red !important;
+}
+
+#cardShowAction {
+  position: absolute;
+
+  top: 45%;
+  left: 50%;
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+  background-color: "black";
+}
+
+.books::-moz-hidden-unscrollable {
+  display: none;
+}
+
+.books::-webkit-scrollbar-button {
+  display: none;
+}
+
+.books::-webkit-scrollbar-track {
+  display: none;
+}
+
+.books::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.books::-webkit-scrollbar {
+  display: none;
+}
+
+.books.books::-moz-hidden-unscrollable {
+  display: none;
+}
+
+.active {
+  @apply text-zinc-200;
+}
+
+.background-options-image {
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-position: center top;
+  background-blend-mode: screen;
+  background-size: cover;
+}
+
+option {
+  background-color: black;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bookSlide {
+  width: 80px;
+  height: 95px;
+}
+
+option:nth-child(odd) {
+  background-color: rgba(255, 136, 0, 0.636);
+}
+
+option:nth-child() {
+  background-color: rgba(255, 136, 0, 0.636);
+}
+
+.swiper {
+  margin-inline: 3px !important;
+  padding-inline: 28px !important;
+}
+
+.swiper-initialized {
+  margin-block: 2px !important;
+  padding-block: 2px !important;
+}
+
+.swiper-horizontal {
+  margin-block: 0px !important;
+}
+
+.swiper-wrapper {
+  margin-block: 20px;
+}
+
+.swiper-slide {
+  transition: all 300ms ease-in-out;
+  transition-delay: 300ms;
+}
+.swiper-slide:hover .book {
+  z-index: 10;
+}
+
+#topApresentationBooks {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  backface-visibility: visible;
+}
+
+.book {
+  width: 130px;
+  height: 180px;
+  transition: ease-in-out 120ms;
+}
+.book img {
+  width: 100%;
+  height: 100%;
+}
+
+.book:hover {
+  transform: scale(1.2);
+  overflow: visible;
+  box-shadow: 1px 1px 10px #6d6d6dc6;
+  transition: ease-in-out 120ms;
+}
+
+.book .book-figcaption-visible {
+  display: none;
+  position: absolute;
+  width: 130px;
+  height: 180px;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+.book .book-figcaption-visible {
+  overflow: hidden;
+}
+
+.book:hover .book-figcaption-visible {
+  display: block;
+  background-color: rgba(15, 15, 15, 0.879);
+}
+
+.book .book-old {
+  @apply z-0 text-sm bottom-0 right-0;
+}
+
+.book:hover .book-old {
+  @apply z-50 text-ss top-0 right-0 bottom-auto;
+}
+
+.swiper-button-prev {
+  color: white;
+  content: "chevron_left";
+}
+.swiper-button-prev::after {
+  font-size: 20px;
+  height: 15px;
+  font-weight: 700;
+}
+
+.swiper-button-next {
+  color: white;
+}
+.swiper-button-next::after {
+  font-size: 20px;
+  height: 15px;
+  font-weight: 700;
+}
+
+#block_comic {
+  background-color: #000000ce;
+  padding: 3px;
+  border-radius: 2px;
+  position: fixed;
+  color: white;
+  z-index: 120;
+
+
+}
+
+
+.book_object{
+  cursor: pointer;
+}
+
+.flex-form-row {
+  @apply flex flex-row space-x-3 justify-between items-center px-1;
+}
+
+.flex-form-row * > input {
+  @apply w-full;
+}
+
+.btn-send{
+  @apply px-5 outline-none py-3 text-white border rounded-sm bg-d-orange-50;
+
+}
+
+.btn-nav {
+  @apply shadow-lg text-d-orange-50 px-6 py-2 bg-zinc-800 border border-d-orange-50 hover:bg-d-orange-50 hover:text-zinc-200 transition-all ease-in-out rounded-sm;
+}
+
+.styled-comic-register {
+  @apply w-full bg-black placeholder:text-zinc-700 rounded-md px-4 py-2 text-white;
+}
+.btn-default {
+  @apply border border-d-orange-50 text-d-orange-50 bg-d-black-85 hover:bg-d-orange-50 hover:text-white focus:ring-4 focus:outline-none focus:ring-d-orange-50 ;
+}
+.modules {
+  @apply flex flex-row flex-wrap px-4 py-7 space-y-4;
+}
+
+.module {
+  @apply m-2 text-2xl text-d-orange-80 rounded-lg;
+}
+
+#title-comic-read{
+  text-shadow: 1px 1px 20px rgba(179, 179, 179, 0.623);
+}
+#desc-comic-read{
+  text-shadow: 1px 1px 20px rgba(179, 179, 179, 0.623);
+}
+
+#paginas {
+    width: 100%;
+    height: 400px;
+    border: 4px dotted rgb(39, 39, 39);
+    border-radius: 6px;
+    background-color: rgb(33, 33, 33);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#paginas input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.file_images_upload {
+    background-color: rgb(45, 45, 45) !important;
+    color: rgba(255, 68, 0, 0.659);
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: orange;
+    transform: translate(-50%, -50%);
+}
+
+.item-image {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: rgb(38, 38, 38);
+    margin-bottom: 2px;
+    color: rgb(230, 232, 234);
+    box-shadow: 1px 2px 10px rgb(24, 24, 24);
+}

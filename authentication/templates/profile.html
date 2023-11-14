@@ -1,0 +1,38 @@
+{% extends "partials/_private_view_comic.html" %}
+{% load static %}
+{% block main %}
+<div class="bg-zinc-800 text-white p-8 rounded-lg">
+  <div class="flex justify-center">
+    <img class="border-spacing-1 rounded-full w-56 h-56" src="/media/{{ user.profile_image }}" />
+    <!-- width={500} height={400} -->
+  </div>
+  <div class="w-full">
+    <h2 class="text-xl font-extrabold my-4">Nome do Usuário</h2>
+    <p class="my-2">
+      <span class="font-bold text-d-orange-50 px-2">name:</span>
+      {{ user.first_name }} {{ user.last_name }}
+    </p>
+    <p class="my-2">
+      <span class="font-bold text-d-orange-50 px-2">email:</span>
+      {{ user.email }}
+    </p>
+    <p class="my-2">
+      <span class="font-bold text-d-orange-50 px-2">Ativo:</span>
+      Sim
+    </p>
+    <div class="mt-8 flex justify-center">
+      <button class="px-4 py-2 rounded-md bg-d-orange-50 hover:bg-d-orange-80">
+        Editar Perfil
+      </button>
+    </div>
+  </div>
+  <div class="text-d-orange-80 font-light mt-8 flex flex-col justify-center px-20 text-center">
+    <p>
+      Caso queira apagar seu perfil acesse o link abaixo que iremos acessar
+      sua conta e entraremos em contato, para que você não tenha prejuisos,
+      desde já agradecemos.
+    </p>
+    <a class="underline text-blue-400 font-thin text-sm" href="shotokawa.com/delete/solicitation">Delete sua conta</a>
+  </div>
+</div>
+{% endblock main %}

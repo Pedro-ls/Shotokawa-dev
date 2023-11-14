@@ -1,0 +1,9 @@
+{
+    
+    "python.defaultInterpreterPath": "python",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none",
+    "livePreview.defaultPreviewPath": "/index.html"
+}

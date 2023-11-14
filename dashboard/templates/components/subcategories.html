@@ -1,0 +1,24 @@
+<div class="module">
+    <article>
+      <div
+        class="w-full flex flex-col space-y-2 border border-d-orange-50 rounded-md px-4 py-8"
+      >
+        {% for subcategory in subcategories %}
+        <span
+          href="#"
+          class="w-full text-d-orange-50 bg-zinc-800 border-t border-zinc-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 inline-flex items-center justify-center"
+        >
+          {{subcategory.type}}
+        </span>
+        {% endfor %}
+        <button
+          data-modal-target="subcategory-modal"
+          data-modal-toggle="subcategory-modal"
+          class="block btn-default font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          type="button"
+        >
+          Criar uma sub-categoria
+        </button>
+      </div>
+    </article>
+  </div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="img" src="">
+    <script>
+        var img = document.getElementById("img")
+        fetch("http://localhost:8000/media/image_front_books/81LJKM-TooL_1_NcbzIXA.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsibmFtZSI6Inh4eCIsImVtYWlsIjoieHh4eEB4eHguY29tIn0sImV4cCI6MTY5NzA1NjUzM30.ZQ8gzd0gTRxPIonIgheLrHkSD3PVR7J6u779lnz0xVs").then(
+            async (res) => {
+                var bb = await res.blob()
+                
+                var local = URL.createObjectURL(bb)
+                img.src = local
+            }
+        )
+    </script>
+</body>
+</html>

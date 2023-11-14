@@ -1,0 +1,51 @@
+<div class="module">
+    <article>
+      <div
+        class="w-full max-w-md p-4 bg-zinc-800 border border-d-orange-50 rounded-lg shadow sm:p-8"
+      >
+        <div class="flow-root">
+          <ul role="list" class="divide-y divide-zinc-700 space-y-3 my-2">
+            {% for author in authors %}
+            <li class="pt-3 pb-0 sm:pt-4">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                  {% if author.photo %}
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="/media/{{author.photo}}"
+                    alt="{{author.name}}"
+                  />
+                  {% endif %}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-d-orange-50 truncate">
+                    {{author.name}}
+                  </p>
+                </div>
+                <div
+                  class="inline-flex justify-center items-center text-base text-d-orange-50"
+                >
+                  <a
+                    class="py-1 px-3 rounded-md bg-red-600 text-white"
+                    href=""
+                    >X</a
+                  >
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+            <li class="mt-2">
+              <button
+                data-modal-target="author-modal"
+                data-modal-toggle="author-modal"
+                class="block btn-default font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                type="button"
+              >
+                Criar um novo autor
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>

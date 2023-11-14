@@ -1,0 +1,93 @@
+{% extends 'partials/_dashboard.html' %}
+{% load static %}
+{% block navbar_options %}
+<section>
+    <a class="btn-nav" href="{% url 'list_episode' comic.slug %}">Listar Episodios</a>
+    <a class="btn-nav" href="{% url 'register_episode' comic.slug %}">Criar Episodios</a>
+</section>
+{% endblock navbar_options %}
+{% block main %}
+<section style="max-width: 700px;" class="container border border-collapse border-zinc-800 block mx-auto my-5">
+    <div class="w-full border-b px-3 py-4 bg-zinc-900 border-collapse border-gray-800">
+        <h2 class="text-d-orange-50 text-2xl">
+            Registrar Episodio do Comic "{{comic.name}}"
+        </h2>
+    </div>
+    <div class="flex flex-col items-center space-y-6">
+        <form  class="container px-7 space-y-3" action="{% url 'register_episode' comic.slug %}" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+            <p class="space-y-6">
+                <div>
+                    <label for="">Nome</label>
+                    {{form.name}}
+                </div>
+                <div>
+                    <label for="">Descrição</label>
+                    {{form.description}}
+                </div>
+            </p>
+    <div id="paginas">
+        <input type="file" name="paginas" id="file-input" multiple="true">
+        <p id="message">Clique ou Arraste
+        seus arquivos AQUI</p>
+    </div>
+    <div id="pages"></div>
+
+    <script src="{% static 'scripts/jszip.min.js' %}"></script>
+    <script>
+        var test_file = undefined
+        var paginas_zip = document.getElementById("paginas")
+        var pages = document.getElementById("pages")
+        var file_input = document.getElementById("file-input")
+        var message = document.getElementById("message")
+
+        paginas_zip.addEventListener("dragover", (evt) => {
+            paginas_zip.classList.add("file_images_upload")
+        })
+        paginas_zip.addEventListener("drop", (evt) => {
+            paginas_zip.style.color = "green"
+            files = evt.target.files
+            
+            var filesHtml = Array()
+
+            for(let index = 0; index < files.length; index++){
+                filesHtml.push(/*html*/`<div id="${index}" class="item-image">
+                    ${files.item(index).name}
+                </div>`)
+            }
+
+            pages.innerHTML = filesHtml
+            
+        })
+
+        file_input.addEventListener("change", (evt) => {
+            paginas_zip.style.color = "green"
+
+            files = evt.target.files
+
+            var filesHtml = Array()
+
+            for(let index = 0; index < files.length; index++){
+                filesHtml.push(/*html*/`<div id="${index}" class="item-image">
+                    ${files.item(index).name}
+                </div>`)
+            }
+
+            pages.innerHTML = filesHtml
+
+
+        })
+    </script>
+
+            
+            
+        
+
+        <div class="flex flex-row justify-end py-5">
+            <button class="btn-send" type="submit">Cadastrar Mangá</button>
+        
+        </div>    
+        </form>
+    </div>
+</section>
+{% endblock main %}
