@@ -21,17 +21,17 @@
 ## Instalando dependências
 - Entre na pasta criada pelo git
 - Instale as dependencias do python com o comando abaixo
-` pip install -r requirements.txt`
+`bash pip install -r requirements.txt`
 - Depois instale as dependencias do javascript
-` npm install `
+`bash npm install `
 ## Rodando migrações
 - Digite os comandos abaixo
-` python manage.py makemigrations ``
-` python manage.py migrate `
+- `bash python manage.py makemigrations `
+- `bash python manage.py migrate `
 ## crie um super usuario
 
 - Digite o comando abaixo
-`python manage.py createsuperuser`
+- `bash python manage.py createsuperuser`
 - Ele vai fazer uma serie de perguntas é só responder, como username, email e senha
 
 - com ele você vai ter acesso ao /admin
