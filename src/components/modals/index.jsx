@@ -1,7 +1,6 @@
 import ReactModal from 'react-modal';
-import foto from '../../assets/PerfilQuadrinho/capa-apagao.png';
-import { useState } from 'react';
 import Rating from '../rating';
+import { EditProfile } from '../editProfile';
 const customStyles = {
     content: {
         top: '50%',
@@ -34,6 +33,21 @@ export function ModalDescriptionComic({
                 contentLabel={title}
             >
                 {description}
+            </ReactModal>
+        </>
+    );
+}
+
+export function EditModalProfile({ open, setCloseModal }) {
+    return (
+        <>
+            <ReactModal
+                style={customStyles}
+                preventScroll={true}
+                isOpen={open}
+                onRequestClose={setCloseModal}
+            >
+                <EditProfile />
             </ReactModal>
         </>
     );

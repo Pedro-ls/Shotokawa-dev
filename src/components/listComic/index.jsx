@@ -3,8 +3,26 @@ import { useMyList } from '../../hooks/mylist-data';
 import { CarouselsContainer } from '../../pages/Home/styles';
 import Card from '../carousel/card';
 import Carousel from '../carousel/slider';
+import { useRef } from 'react';
 
-export const ListComics = ({ mylist, comics }) => {
+export const ListComics = ({ mylist, comics, pagination }) => {
+    const comic_loading_ref = useRef(null);
+    const observer = useRef(null);
+
+    const { fetchNextPage, hasNextPage, isFetched, isFetchingNextPage } =
+        pagination;
+    useEffect(() => {
+        observer.current = new IntersectionObserver((entries) => {
+            if (hasNextPage) {
+                fetchNextPage();
+            }
+        });
+
+        if (comic_loading_ref.current) {
+            observer.current.observe(comic_loading_ref.current);
+        }
+    }, []);
+
     const { addMyList, removeMyList } = useMyList();
 
     return (
@@ -42,6 +60,13 @@ export const ListComics = ({ mylist, comics }) => {
                         }}
                     />
                 ))}
+                <>
+                    <div ref={comic_loading_ref}></div>
+                    {isFetched && isFetchingNextPage && (
+                        <div>Carregando...</div>
+                    )}
+                </>
+                <>{hasNextPage == false && <div>Não mais dados</div>}</>
             </Carousel>
         </CarouselsContainer>
     );

@@ -25,8 +25,12 @@ import {
 import Menu from './menu';
 import { useComicsContext } from '../../context/comics';
 import { Link } from 'react-router-dom';
+
+import { EditModalProfile } from '../modals';
 const Navbar = ({ accountName, accountProfile }) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const [openModalProfile, setOpenModalProfile] = useState(false);
     const { setIsSearching, setSearch } = useComicsContext();
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -46,6 +50,9 @@ const Navbar = ({ accountName, accountProfile }) => {
                 style={{
                     backgroundImage: `url(${accountProfile})`,
                 }}
+                onClick={() => {
+                    setOpenModalProfile(true);
+                }}
             >
                 <EditProfile
                     style={{
@@ -56,6 +63,12 @@ const Navbar = ({ accountName, accountProfile }) => {
                     <Pencil size={20} />
                 </EditProfile>
             </NavbarProfile>
+            <EditModalProfile
+                open={openModalProfile}
+                setCloseModal={() => {
+                    setOpenModalProfile(false);
+                }}
+            />
             <ProfileName>{accountName}</ProfileName>
             <Line />
             <InputSearch

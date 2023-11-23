@@ -53,7 +53,16 @@ const Home = () => {
                         {comicLoading == true ? (
                             <ComicLoading />
                         ) : (
-                            <ListComics comics={comics} mylist={mylist} />
+                            <ListComics
+                                pagination={{
+                                    isFetched,
+                                    isFetchingNextPage,
+                                    hasNextPage,
+                                    fetchNextPage,
+                                }}
+                                comics={comics}
+                                mylist={mylist}
+                            />
                         )}
                     </>
                 )}

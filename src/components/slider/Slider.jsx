@@ -32,7 +32,6 @@ const Slider = () => {
     const images = data?.map(({ image_back }) => {
         return urlImageServer(image_back, auth?.token);
     });
-    console.log(data);
     const imageInfo = data?.map((recent, index) => {
         return {
             image: urlImageServer(recent.image_title, auth?.token),
