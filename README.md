@@ -6,7 +6,7 @@
 
 <p align="center">
   <img align="center" src="https://img.shields.io/badge/python-darkblue?style=for-the-badge&logo=python&logoColor=yellow" />
-  <img align="center" src="https://img.shields.io/badge/python-white?style=for-the-badge&logo=django&logoColor=darkgreen" alt="Bootstrap" />
+  <img align="center" src="https://img.shields.io/badge/django-white?style=for-the-badge&logo=django&logoColor=darkgreen" alt="Bootstrap" />
   <img align="center" src="https://img.shields.io/badge/Swagger-green?style=for-the-badge&logo=swagger&logoColor=white" />
   <img align="center" src="https://img.shields.io/badge/Tailwindcss-blue?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Bootstrap" />
 
