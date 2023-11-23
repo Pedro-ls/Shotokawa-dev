@@ -32,7 +32,7 @@
 
 # Instalação no Windows
 
-## para baixar o python
+## Para baixar o python
 - Entre no site https://www.python.org/downloads/windows/
 
 ## Baixando repositorio
@@ -58,7 +58,7 @@
 - Digite os comandos abaixo
 - `python manage.py makemigrations `
 - `python manage.py migrate `
-## crie um super usuario
+## Crie um super usuario
 
 - Digite o comando abaixo
 - `python manage.py createsuperuser`
@@ -89,7 +89,7 @@
 - python manage.py migrate
 
 ## Rodando Projeto
-### criando super usuário
+### Criando super usuário
 
 - python manage.py createsuperuser
 
