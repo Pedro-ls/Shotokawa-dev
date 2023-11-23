@@ -1,0 +1,145 @@
+{% extends 'partials/_dashboard.html' %}
+{% load static %}
+{% block navbar_options %}
+
+{% endblock navbar_options %}
+{% block main %}
+<h1 class="">{{title}}</h1>
+<article>{{description}}</article>
+<section>
+    <table class="table container w-full">
+        <thead>
+            <tr>
+                <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">
+                    Numero Pagina
+                </th>
+                <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">
+                    Localização do arquivo
+                </th>
+                <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">
+                    Imagem
+                </th>
+                <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">
+                    Deletar Pagina
+                </th>
+            </tr>
+        </thead>
+        <tbody class="row-page text-base">
+            {% for page in  pages %}
+            <tr id="data-{{page.num_page}}" data-id="{{page.num_page}}"
+                class="text-white hover:text-zinc-300 border-b pb-2 border-zinc-700 hover:border-zinc-600">
+                <td class="text-center py-3 max-w-[50px]">
+                    <span class="numpage px-20 py-5 text-center"
+                        data-numpage="{{page.num_page}}">{{page.num_page}}</span>
+                    <form>
+                        <input class="d-none bg-zinc-800 h-24 text-center" id="numpage{{page.num_page}}" type="text"
+                            value="{{page.num_page}}" />
+                        <button type="submit" class="d-none" id="confirm-change-{{page.num_page}}">change</button>
+                    </form>
+                </td>
+                <td class="text-center py-3">{{page.photo.url}} <a>Atualizar Imagem</a></td>
+                <td class="text-center py-3"><img style="width: 40px; height: 40px" src="{{page.photo.url}}"
+                        alt="Foto da pagina {{page.num_page}}"></td>
+                <td>
+                    <a href="{% url 'delete_page' slug page.id %}">Deletar Item</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</section>
+
+
+<form class="flex items-center px-7 py-4 rounded-md my-4 fixed bottom-0 left-[50%] bg-zinc-800  -translate-x-[50%]"
+    action="{% url 'update_pages' slug %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="flex mx-3">
+        <label class="min-w-[280px]">coloque a/s imagem/s entre </label>
+        <input class="text-white" type="file" multiple name="photo">
+    </div>
+    <div>
+        <select class="bg-zinc-950 text-d-orange-50  mx-2" id="position-insertion" name="loc">
+            <option selected="first">no Início</option>
+            <option value="middle">depois da pagina</option>
+            <option value="end">no final</option>
+        </select>
+    </div>
+    <div id="middle-pages">
+
+        <select type="number" class="bg-zinc-950 text-d-orange-50" name="last_page">
+            {% for page in  pages %}
+            <option value="{{ page.num_page }}">{{page.num_page}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button class="mx-2 p-3 bg-d-orange-50 text-white rounded-md min-w-[190px] hover:bg-white hover:text-d-orange-50"
+        type="submit">Adicionar nova pagina</button>
+</form>
+{% endblock main %}
+
+
+{% block scripts %}
+<script src="{% static "scripts/jquery-ui.min.js" %}"></script>
+<script>
+
+   
+    $(document).ready(() => {
+        $(function () {
+
+            if ($("#position-insertion").val() != "middle") {
+                $("#middle-pages").hide()
+            }
+
+            $("#position-insertion").change((event) => {
+                if (event.currentTarget.value == "middle") {
+                    $("#middle-pages").show()
+                } else {
+                    $("#middle-pages").hide()
+                }
+            })
+
+            $(".numpage").click(function () {
+                const numpage = $(this).attr("data-numpage")
+                var elementThis = $(this)
+                $(this).addClass("d-none")
+                $(`#numpage${numpage}`).removeClass("d-none")
+                $(`#confirm-change-${numpage}`).removeClass("d-none")
+
+                $(`#confirm-change-${numpage}`).on('click', function (event) {
+                    event.preventDefault()
+                    const new_number = Number($(`input#numpage${numpage}`).val())
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'reorder_pages' slug %}",
+                        datatype: "json",
+                        data: {
+                            csrfmiddlewaretoken: "{{csrf_token}}",
+                            old_page: numpage,
+                            new_page: new_number
+                        },
+                        success: function (res) {
+                            try{
+                                $(`input#numpage${new_number}`).val(numpage)
+                                $(`#numpage${new_number}`).html(numpage)
+
+                            } catch {
+
+                            }
+                            $(`input#numpage${numpage}`).val(new_number)
+                            elementThis.html(new_number)
+                            $(`#numpage${numpage}`).addClass("d-none")
+                            $(`#confirm-change-${numpage}`).addClass("d-none")
+                            elementThis.removeClass("d-none")
+                        }
+                    })
+                })
+
+
+            })
+
+
+        })
+    })
+</script>
+{% endblock scripts %}

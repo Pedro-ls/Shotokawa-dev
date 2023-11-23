@@ -20,7 +20,7 @@ class Episode(models.Model):
     
     def images(self):
         pages =  PageImage.objects.filter(pages = self).all()
-        print(pages)
+
         return pages
 
 

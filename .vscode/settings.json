@@ -4,6 +4,35 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
     },
-    "python.formatting.provider": "none",
+    
+    "[django-html]": {
+        
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            
+            "strings": true
+        },
+        "editor.suggestSelection": "first",
+        "emmet.showAbbreviationSuggestions": true,
+        "emmet.triggerExpansionOnTab": true,
+        "editor.multiCursorModifier": "ctrlCmd",
+        "editor.autoClosingBrackets": "always",
+        "editor.autoClosingQuotes": "always",
+        "javascript.suggest.completeJSDocs": true,
+        "javascript.autoClosingTags": true,
+        "javascript.suggest.enabled": true,
+        "javascript.suggest.jsdoc.generateReturns": true,
+
+    },
+    "emmet.includeLanguages": {"django-html": "html"},
+
+    "files.associations": {
+        "*.html": "html",
+        "**/templates/*.html": "django-html",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+      
+        
+      },
     "livePreview.defaultPreviewPath": "/index.html"
 }

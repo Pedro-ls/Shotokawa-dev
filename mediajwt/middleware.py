@@ -40,7 +40,7 @@ class JWTMediaStorage:
         response:HttpResponse = self.get_response(request)
 
         if(request.user.is_authenticated):
-            print("TESTE")
+
             return response
         
         
@@ -49,7 +49,6 @@ class JWTMediaStorage:
             origin = self.get_origin(request)
            
             if origin:
-                print("AQUI")
                 media_private_access = getattr(settings, "MEDIA_ACCESS_PRIVATE", None)
                 
                 if(origin == media_private_access):
@@ -70,13 +69,12 @@ class JWTMediaStorage:
                             client = Client.objects.filter(email = sub["email"]).first()
                             account = Account.objects.filter(client_account = client).first()
                             
+                            print("teste")
+
                             if account.isPayment == False:
                                 json_response = JsonResponse({"message": "You don't have permission for Access the image"})
                                 json_response.status_code = 401
                                 return json_response
-
-
-                            # logica
                         except:
                             json_response = JsonResponse({"message": "You don't have permission for Access the image"})   
                             json_response.status_code = 401

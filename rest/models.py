@@ -16,7 +16,7 @@ class Client(models.Model):
 class Account(models.Model):
     isPayment = models.BooleanField(default=False)
     payment_mode = models.CharField(max_length=3, default="BLT")
-    date_expired = models.BooleanField(default=False)
+    date_expired = models.DateField(default="", null=True, blank=True)
     client_account = models.ForeignKey(
         Client, related_name="client_account", null=False, on_delete=models.CASCADE)
 

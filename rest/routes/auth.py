@@ -1,11 +1,13 @@
 import datetime
 from django.conf import settings
 import jwt
+from ninja import File
+from ninja.files import UploadedFile
 from ninja.router import Router
 from rest.models import Account, Client
 
 from rest.routes import middlewares
-from rest.schemes.client import LoginClientSchema, RegisterClientSchema, ResultTokenClient
+from rest.schemes.client import ChangeClientSchema, LoginClientSchema, RegisterClientSchema, ResultTokenClient
 
 router = Router()
 
@@ -24,16 +26,16 @@ def do_login_client(request, payload: LoginClientSchema):
         return {"message": "Cliente não encontrado"}, 404
 
     JWT_SIGNING_KEY = getattr(settings, "JWT_SIGNING_KEY", None)
-    
+
     # Hours Expired
-    #  :-) 
+    #  :-)
     # second = (1000 * 60)
     # minute = second * 60
     # hour = minute * 60
 
-    two_hours = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(hours=2) # 2 hours
+    two_hours = datetime.datetime.now(
+        tz=datetime.timezone.utc) + datetime.timedelta(hours=2)  # 2 hours
 
-    
     encoded_jwt = jwt.encode({
         "sub": {
             "name": client_by_email.name,
@@ -47,25 +49,24 @@ def do_login_client(request, payload: LoginClientSchema):
     else:
         photo = ""
 
-
     print("----------------------------------------------------------------------------HELLOW-----------------------------")
-    account = Account.objects.filter(client_account = client_by_email).first()
+    account = Account.objects.filter(client_account=client_by_email).first()
 
     return {
-            "token": encoded_jwt,
-            "user": {
-                "name": client_by_email.name,
-                "email": client_by_email.email,
-                "photo": photo,
-                "payment": bool(account.isPayment)
-            }
+        "token": encoded_jwt,
+        "user": {
+            "name": client_by_email.name,
+            "email": client_by_email.email,
+            "photo": photo,
+            "payment": bool(account.isPayment)
+        }
     }
 
 
 @router.get("/user", auth=middlewares.jwtMiddleware())
 def get_client(request):
 
-    print(request.client.name)
+    print(request.client)
     return {"user": request.auth}
 
 
@@ -87,10 +88,10 @@ def register_new_user_client(request, payload: RegisterClientSchema):
     account = Account()
 
     account.client_account = new_client
-    
+
     new_client.save()
     account.save()
-    
+
     return {"message": "Cliente salvo com sucesso"}
 
 
@@ -99,9 +100,51 @@ def buy_for_mounth(request):
     return {"buy": request.auth}
 
 
-@router.patch("/update")
-def alter_user_client(request):
-    return {"update": request.auth}
+# class AbstractFile(File):
+#     ...
+
+
+# class HandlerFile(UploadedFile):
+#     def uploadedFile(self):
+#         return None
+
+
+@router.post("/update", auth=middlewares.jwtMiddleware(), response=None)
+def alter_user_client(request, payload: ChangeClientSchema, file: UploadedFile):
+
+    print("File")
+
+    return None
+    exist_client = Client.objects.filter(id=request.client.id).exists()
+
+    if exist_client == False:
+        return {"message": "Cliente não existe"}
+
+    client = Client.objects.filter(id=request.client.id).first()
+
+    if payload.name:
+        client.name = payload.name
+    if payload.email:
+        client.email = payload.email
+
+    if payload.new_password and payload.old_password and payload.confirm_password:
+        if payload.new_password != payload.confirm_password:
+            return {"message": "senhas não coencidem"}
+
+        if payload.old_password != client.password:
+            return {"message": "Credencial errada"}
+
+        if payload.old_password == payload.new_password:
+            return {"message": "sua senha antiga é igual a nova"}
+        password = payload.new_password
+    else:
+        password = client.password
+
+    client.password = password
+
+    client.save()
+
+    return {"message": "Atualização feita com sucesso"}
 
 
 @router.delete("/delete")

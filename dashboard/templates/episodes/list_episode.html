@@ -8,13 +8,13 @@
 {% block main %}
 <div class="mt-6">
 
-    <h1 class="mb-8 text-5xl text-d-orange-50">
-        <a class="flex items-center text-base"
+    <h1 class="mb-8 text-3xl text-d-orange-50">
+        <a class="flex flex-rowitems-center text-base"
         href="{% url 'list_comic' %}">
-            <span class="text-d-orange-50 mb-2 text-2xl no-underline border-2 border-d-orange-50 px-1 mx-2 rounded-full material-symbols-outlined">
+            <span class="text-d-orange-50 w-9 h-9 mb-2 text-2xl no-underline border-2 border-d-orange-50 px-1 mx-2 rounded-full material-symbols-outlined">
                 arrow_back
             </span>
-            <span class="underline px-2 py-1 my-2 text-xl">
+            <span class="underline self-center px-2 pb-4 text-3xl">
                 Retornar
             </span>
         </a>
@@ -27,6 +27,8 @@
                 <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Numero de paginas</th>
                 <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Quantidade por pagina</th>
                 <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Paginas</th>
+                <th class="text-lg underline text-center bg-zinc-800 text-zinc-200 py-4">Acesso ao capitulo</th>
+
             </tr>
             <tbody class="text-base">
                 {% for comic_obj in comic.episodes.all %}
@@ -36,10 +38,17 @@
                         <td class="text-center py-3">{{comic_obj.num_pages}}</td>
                         <td class="text-center py-3">{{comic_obj.qt_by_page}}</td>
                         <td class="text-center py-3">
+                            {% if comic_obj.images %}
                             paginas:
                             {% for image in comic_obj.images %}
                                 <a href="{{image.photo.url}}" alt="">{{image.num_page}}</a>
                             {% endfor %}
+                            {% else %}
+                                <span class="text-sm font-normal">Nenhuma página</span>
+                            {% endif %}
+                        </td>
+                        <td class=" text-center">
+                            <a class="text-sm font-normal text-blue-500 hover:text-blue-600 underline" href="{% url 'pages' comic_obj.slug %}">Acesso ao {{comic_obj.name}}</a>
                         </td>
                     </tr>
                 {% endfor %}

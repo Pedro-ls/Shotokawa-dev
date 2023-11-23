@@ -13,6 +13,7 @@ class __GlobalAuth(HttpBearer):
 
 class __JwtAuth(HttpBearer):
     def authenticate(self, request, token):
+        print("Teste")
         try:
             #JWT secret key is set up in settings.py
         
@@ -31,6 +32,7 @@ class __JwtAuth(HttpBearer):
             
             return True
         except jwt.PyJWTError as e:
+            print(payload)
             return None
         
 
