@@ -18,6 +18,18 @@
    <img src="http://img.shields.io/static/v1?label=STATUS&message=%20EM%20andamento&color=yellow&style=for-the-badge" />
 </p>
 
+## Tecnologias usadas
+- DJANGO -> Server
+- DJANGO-NINJA -> API
+- TAIWINDCSS -> Style Dashboard
+- JWT -> AUTH API
+
+# Rotas principais
+
+- /admin # o super usuario criado é usado aqui
+- /dashboard
+- /v1/api/docs
+
 # Instalação no Windows
 
 ## para baixar o python
@@ -55,48 +67,35 @@
 - com ele você vai ter acesso ao /admin
 
 ## Rode o servidor
-python manage.py runserver
+- crie uma pasta chamada "media" na raiz do projeto baixado
+- python manage.py runserver
 
-## TECHS
-- DJANGO -> Server
-- DJANGO-NINJA -> API
-- TAIWINDCSS -> Style Dashboard
-- JWT -> AUTH API
+# Instalando projeto no Linux
 
-# Install Project on Linux
+# Inicialmente
 
-## Install Env
-
-- Install Python 3 e pip
+- Instale o Python 3 e o pip
 - cd ./pasta_do_projeto
 - python -m venv venv
 - source ./venv/bin/activate # procurar como ativar o ambiente virtual com python
 
 ## Instalando dependências
 - pip install -r requirements.txt
+- npm install
 
-## used SQLITE
-## Install DB
+## Rodando migrações do banco de dados
 
 - python manage.py makemigrations
 - python manage.py migrate
 
-## Run project
-### create superuser
+## Rodando Projeto
+### criando super usuário
 
 - python manage.py createsuperuser
 
-## commands running...
+## Comandos para funcionar o servidor django...
 
 - npm run compress
 - python manage.py runserver
-
-# ROUTES
-
-/admin # o super usuario criado é usado aqui
-/dashboard
-/v1/api/docs
-
-END.
 
 # Maked by Pedro Henrique da Silva
